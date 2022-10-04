@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/search', to: 'searches#search'
+  
+  get 'books/search/sort_new', to: 'books#search', as: 'sort_new'
+  get 'books/search/sort_join', to: 'books#search', as: 'sort_join'
 end

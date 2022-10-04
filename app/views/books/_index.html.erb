@@ -1,3 +1,5 @@
+<%= link_to '新しい順', books_path(latest: "true") %>
+|<%= link_to '評価の高い順', books_path(rate_count: "true") %>
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
@@ -22,17 +24,18 @@
         <td><%= render "book_comments/counter", book: book %></td>
         <td><div id="star-rate<%= book.id%>"></div></td>
     <script>
+      
       $('#star-rate<%= book.id%>').raty({
         size      : 36,
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
         half      : false,
         readOnly: true,
-        score: <%= book.rate %>,
+        score: <%= book.rate %>
       });
     </script>
-  
-          
+
+
       </tr>
     <% end %>
   </tbody>
