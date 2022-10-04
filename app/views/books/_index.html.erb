@@ -20,20 +20,20 @@
             <%= render "favorites/btn", book: book %>
         </td>
         <td><%= render "book_comments/counter", book: book %></td>
-        <td><div class="form-group row" id="star"></div>
-          </td>
+        <td><div id="star-rate<%= book.id%>"></div></td>
+    <script>
+      $('#star-rate<%= book.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= book.rate %>,
+      });
+    </script>
+  
+          
       </tr>
     <% end %>
   </tbody>
 </table>
- <script>
-    $('#star').raty({
-    size: 36,
-    starOff:  <%= asset_path('star-off.png') %>,
-    starOn : <%= asset_path('star-on.png') %>,
-    starHalf: <%= asset_path('star-half.png') %>,
-    half: true,
-    readOnly: true,
-    scoreName: 'book[rate]',
-    });
-  </script> 

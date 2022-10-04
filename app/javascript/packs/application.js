@@ -17,7 +17,6 @@ import "../stylesheets/application"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-//= require jquery
-//= require jquery_ujs
-window.jQuery = window.$ = require('jquery')
+
+window.$ = window.jQuery = require('jquery');
 require('packs/raty')
