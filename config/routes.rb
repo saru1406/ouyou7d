@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   get 'books/search/sort_new', to: 'books#search', as: 'sort_new'
   get 'books/search/sort_join', to: 'books#search', as: 'sort_join'
+  get "search_book" => "books#search_book"
 end

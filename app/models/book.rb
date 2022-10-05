@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :tags, dependent: :destroy
+
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
@@ -22,20 +22,14 @@ class Book < ApplicationRecord
       Book.where('title LIKE ?', '%'+content+'%')
     end
   end
+  
+  def self.search(search_word)
+    Book.where(['category LIKE ?', "#{search_word}"])
+  end
 
   scope :latest, -> {order(created_at: :desc)}
   scope :rate_count, -> {order(rate: :desc)}
-  
-  def save_with(tag_names)
-  ActiveRecord::Base.transaction do
-    self.book_tags = tag_names.map { |name| Tag.find_or_initialize_by(name: name.strip) }
-    save!
-  end
-  true
 
-  rescue StandardError
-  false
-  end
 
 
 end
