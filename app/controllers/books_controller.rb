@@ -23,6 +23,8 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       redirect_to book_path(@book), notice: "You have created book successfully."
+    elsif @book.save_with(tag_names)
+      redirect_to @book, notice: t('.success')
     else
       @books = Book.all
       render 'index'
@@ -49,6 +51,10 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body,:rate,:star)
+  end
+  
+  def tag_names
+      params[:book][:tag_names]
   end
 
   def ensure_correct_user
